@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .xx {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1cm;
+        margin: 4px 2px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    .zz {
+        background-color: white;
+        position: fixed;
+        height: 250px;
+        width: 250px;
+        border: solid black 1px;
+        vertical-align: middle;
+        left: calc(50% - 125px);
+        top: calc(50% - 125px);
+        display: none;
+    }
+    .pp {
+        position: fixed;
+        bottom: 20px;
+        right: 100px;
+        background-color: red;
+        border: none;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1cm;
+        margin: 4px 2px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    .yy {
+        background-color: white;
+        position: fixed;
+        height: 250px;
+        width: 250px;
+        border: solid black 1px;
+        vertical-align: middle;
+        left: calc(50% - 125px);
+        top: calc(50% - 125px);
+        z-index: 99999;
+        display: none;
+    }
+</style>
+<body >
+<input oninput="search1(this.value)">
+
+    <div id="1" class="">
+    </div>
+<div class="xx" id = '17' onclick="add1 ()">+</div>
+<div class="zz" id = 'zz'>
+
+<button onclick="ydalis1 ()" style="height: 25px; width: 25px; position: fixed; right: 304px">X</button>
+<input id="p" style="margin-top: 35%; margin-left: 13%" >
+    <button onclick="add2 ()" style="margin-left: calc(32% + 3px)" >Добавить</button>
+
+
+</div>
+<div class="pp" style="margin-left: -20%" onclick="remove1 ()">&times</div>
+<div id="yy" class="yy" onclick="function aa() {}">
+    <button onclick="ydalis ()" style="height: 25px; width: 25px; position: fixed; right: 304px">X</button>
+    <input id="p1" style="margin-top: 35%; margin-left: 13%" >
+    <button onclick="remove2 ()" style="margin-left: calc(32% + 3px)" >Удалить</button>
+
+</div>
+</body>
+<script>
+    i = true;
+    if(localStorage['list']===undefined){
+        localStorage['list'] =JSON.stringify([])
+    }
+    a = JSON.parse(localStorage['list']);
+    for (i=0; i<a.length;i++) {
+        x = document.createElement('div');
+        x.innerHTML='<div>'+a[i]+'</div>';
+        document.getElementById('1').appendChild(x);
+    }
+    function search1(a1) {
+        document.getElementById('1').innerHTML = '';
+        for (i=0; i<a.length;i++){
+            if (a[i].includes(a1)){
+                x = document.createElement('div');
+                x.innerHTML='<div>'+a[i]+'</div>';
+                document.getElementById('1').appendChild(x);
+             }
+        }
+    }
+    function add1() {
+        i = !i;
+        if (i == true){
+            document.getElementById('zz').style.display = 'block';
+        }
+         else  {
+            document.getElementById('zz').style.display = 'none';
+            document.getElementById('yy').style.display = 'none';
+        }
+    }
+    function add2() {
+       a.push(document.getElementById('p').value);
+       localStorage['list'] = JSON.stringify(a)
+        add1();
+        document.getElementById('1').innerHTML = '';
+        for (i=0; i<a.length;i++) {
+        x = document.createElement('div');
+        x.innerHTML='<div>'+a[i]+'</div>';
+        document.getElementById('1').appendChild(x);
+    }
+    }
+function remove1 () {
+     i = !i;
+        if (i == true){
+            document.getElementById('yy').style.display = 'block';
+        }
+         else  {
+            document.getElementById('yy').style.display = 'none';
+            document.getElementById('zz').style.display = 'none';
+        }
+}
+function remove2 () {
+    d = document.getElementById('p1').value;
+    console.log(a.indexOf(d));
+    a.splice(a.indexOf(d), 1);
+     localStorage['list'] = JSON.stringify(a)
+
+    remove1();
+    console.log(a);
+    document.getElementById('1').innerHTML = '';
+    for (i=0; i<a.length;i++) {
+    x = document.createElement('div');
+    x.innerHTML='<div>'+a[i]+'</div>';
+    document.getElementById('1').appendChild(x);
+    }
+
+}
+function ydalis() {
+    document.getElementById('yy').style.display = 'none';
+
+}
+function ydalis1() {
+    document.getElementById('zz').style.display = 'none';
+
+}
+</script>
+</html>
+
+
+
